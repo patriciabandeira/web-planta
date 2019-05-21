@@ -40,7 +40,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
-        $this->redirectTo = route('home');
+        $this->redirectTo = route('home.index.get');
 		$this->attrFormNiceNames = [
 			'name' => trans('custom.name'),
 			'email' => trans('custom.email'),
