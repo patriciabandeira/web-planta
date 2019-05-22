@@ -23,7 +23,7 @@ class Planta extends Model
      * @var array
      */
     protected $fillable = [
-        'nome_popular', 'nome_cientifico', 'autoria', 'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim', 'grau_ameaca', 'descricao'
+        'id', 'nome_popular', 'nome_cientifico', 'autoria', 'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim', 'biomas', 'grau_ameaca_iucn', 'descricao', 'dist_geografica', 'imagens'
     ];
 
     protected $visible = [
@@ -69,9 +69,14 @@ class Planta extends Model
         ///'dist_geografica' => 'array',
     ];
 
-    public function getDistGeograficaAttribute($value){
-        $value = unserialize($value);
-        return $value;
+    //public function getDistGeograficaAttribute($value){
+    //    $value = unserialize($value);
+    //    return $value;
+    //}
+
+    // having this mutator
+    public function setImagensAttribute($value){
+        $this->imagens = $value;
     }
     
     public function imagens()

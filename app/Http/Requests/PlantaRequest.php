@@ -61,6 +61,7 @@ class PlantaRequest extends FormRequest
             'biomas.*'  => 'integer',
             'dist_geografica' => 'required|array|min:1',
             'dist_geografica.*' => 'integer',
+            'imagens'  => 'array',
 		];
     }
 

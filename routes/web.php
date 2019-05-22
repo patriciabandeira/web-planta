@@ -19,10 +19,12 @@ Route::group(['prefix' => 'admin'], function () {
 
 	Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
 		Route::get('/', ['as' => 'index.get', 'uses' => 'PlantaController@index']);
-		Route::get('/{id}', ['as' => 'find_by_id.get', 'uses' => 'PlantaController@viewGet'])->where('id', '\d+');
+		Route::get('/{id}', ['as' => 'view.get', 'uses' => 'PlantaController@viewGet'])->where('id', '\d+');
 		
 		Route::get('/add', ['as' => 'add.get', 'uses' => 'PlantaController@addGet']);
 		Route::post('/add', ['as' => 'add.post', 'uses' => 'PlantaController@addPost']);
+
+		Route::get('/edit/{id}', ['as' => 'edit.get', 'uses' => 'PlantaController@editGet'])->where('id', '\d+');
 
 		Route::delete('/del/{id}', ['as' => 'delete', 'uses' => 'PlantaController@delete'])->where('id', '\d+');
 

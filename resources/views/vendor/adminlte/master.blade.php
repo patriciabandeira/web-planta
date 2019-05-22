@@ -23,45 +23,10 @@
     <link href="{{ asset('public/vendor/adminlte/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('public/vendor/adminlte/vendor/icheck/skins/all.css') }}" rel="stylesheet" />
     <link href="{{ asset('public/vendor/adminlte/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('public/vendor/adminlte/vendor/lightbox2/dist/css/lightbox.min.css') }}" rel="stylesheet" />
 
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('public/vendor/adminlte/dist/css/AdminLTE.min.css') }}">
-
-    <!--
-    <style>
-    .modal-dialog {
-        position:absolute;
-        top:50% !important;
-        transform: translate(0, -50%) !important;
-        -ms-transform: translate(0, -50%) !important;
-        -webkit-transform: translate(0, -50%) !important;
-        margin:auto 5%;
-        width:90%;
-        height:80%;
-        }
-        .modal-content {
-        min-height:100%;
-        position:absolute;
-        top:0;
-        bottom:0;
-        left:0;
-        right:0; 
-        }
-        .modal-body {
-        position:absolute;
-        top:45px;
-        bottom:45px;
-        left:0;
-        right:0;
-        overflow-y:auto;
-        }
-        .modal-footer {
-        position:absolute;
-        bottom:0;
-        left:0;
-        right:0;
-    }
-    </style> -->
 
     <style>
         .modal {
@@ -163,6 +128,9 @@
             margin-top: 0px;
             margin-bottom: 0px;
         }
+
+        #lightboxOverlay { position: fixed !important; top: 0; left: 0; height: 100% !important; width: 100% !important; }
+        #lightbox { position: fixed !important; top: 50% !important; transform: translateY(-50%); }
     </style>
 
     @if(config('adminlte.plugins.datatables'))
@@ -209,6 +177,8 @@
 <script src="{{ asset('public/vendor/adminlte/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src="{{ asset('public/vendor/adminlte/vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker.pt-BR.min.js') }}" charset="UTF-8"></script>
 <script src="{{ asset('public/vendor/adminlte/vendor/bootstrap-filestyle/src/bootstrap-filestyle.min.js') }}"></script>
+<script src="{{ asset('public/vendor/adminlte/vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
+
 
 @yield('custom_js')
 

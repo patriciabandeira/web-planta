@@ -5,7 +5,7 @@
 @section('title', 'Adicionar Nova Planta')
 
 @section('content_header')
-    <h1>Adicionar <small>Nova Planta</small></h1>
+    <h1>Visualização <small>Planta</small></h1>
 @stop
 
 @section('content')
@@ -105,7 +105,7 @@
 							<label>Biomas</label>
 							<select name="biomas[]" class="form-control select2" multiple="multiple" data-placeholder="Selecione o(s) Bioma(s)" style="width: 100%;" disabled>
 								@foreach($biomas as $skey=>$bioma)
-									<option value="{{$bioma->id }}"}} {{ ($planta['biomas']->contains($bioma->id) ? 'selected' : '') }}>
+									<option value="{{$bioma->id }}"}} {{ ($planta->biomas->contains($bioma->id) ? 'selected' : '') }}>
 										{{ $bioma->nome }}
 									</option>
 								@endforeach
@@ -115,10 +115,9 @@
 
 						<div class="form-group">
 							<label>Distribuição Geográfica</label>
-							{{ var_dump($planta['dist_geografica']) }}
 							<select name="dist_geografica[]" class="form-control select2" multiple="multiple" data-placeholder="Selecione o(s) Estados(s)" style="width: 100%;" disabled>
 								@foreach($estados as $estado)
-									<option value="{{ $estado->id }}"}} {{ (collect($planta['dist_geografica'])->contains($estado->id) ? 'selected' : '') }}>
+									<option value="{{ $estado->id }}"}} {{ ($planta->dist_geografica->contains($estado->id) ? 'selected' : '') }}>
 										{{ $estado->nome }} ({{ $estado->sigla }})
 									</option>
 								@endforeach
@@ -146,61 +145,45 @@
 						<h4 class="box-title">Imagens</h3>
 					</div>
 					<div class="col-md-12">
-						<button class="btn btn-success add-imagem" type="button" style="float:right;"><i class="glyphicon glyphicon-plus"></i> Nova Imagem</button>
+						
 					</div>
 				</div>
 				
 				<!-- Copy Fields -->
 				<div id="after-add-more">
-					{{var_dump($planta['imagens'])}}<br>
-					@if($planta['imagens'])
-						@foreach($planta['imagens'] as $key => $imagem)
+					@if($planta->imagens)
+						@foreach($planta->imagens->toArray() as $key => $imagem)
 						@if(is_numeric($key) && is_array($imagem))
-						{{ $imagem['url'] }}
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
 									<div class="row vertical-align">
 										<div class="col-xs-4">
 										<div class="content-img">
-											<a href="#" class="thumbnail" style="margin-bottom: 0px;">
-												<img id="imagem_preview_{{ $key }}" class="thumb-planta" src="{{ (!isset($imagem['url']) ? asset('public/img/img-planta-default-336x180.png') : $imagem['url']) }}" alt="Imagem {{ $key+1 }}" title="Imagem {{ $key+1 }}">
+											<a class="thumbnail gallery" style="margin-bottom: 0px;" data-lightbox="imagens_planta" data-title="{{ (isset($imagem['autor']) ? 'Autor: '.$imagem['autor'] : '') }} <br> {{ (isset($imagem['fonte']) ? 'Fonte: '.$imagem['fonte'] : '') }}" href="{{ (!isset($imagem['url']) ? asset('public/img/img-planta-default-336x180.png') : $imagem['url']) }}">
+												<img id="imagem_preview_{{ $key }}" class="thumb-planta" src="{{ (!isset($imagem['url']) ? asset('public/img/img-planta-default-336x180.png') : $imagem['url']) }}" alt="Imagem {{ $key+1 }}" title="Imagem {{ $key+1 }}"/>
 											</a>
-											<div id="overlay_{{ $key }}" class="overlay overlay-hide">
-												<div class="overlay-content"><img src="{{ asset('public/img/loading.gif') }}" alt="Carregando..."/></div>
-											</div>
 										</div>
 										</div>
 										<div class="col-xs-8" style="padding-left:0px;">
 											<div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
 												<label for="url">URL</label>	
-												<input type="text" class="form-control" onchange="loadImageWeb(this)" name="imagens[{{ $key }}][url]" id="imagem_url_{{ $key }}" value="{{ (isset($imagem['url']) ? $imagem['url'] : '') }}" placeholder="Informe a URL da Imagem. http://www.site.com/imagem.jpg">
+												<input type="text" class="form-control" name="imagens[{{ $key }}][url]" id="imagem_url_{{ $key }}" value="{{ (isset($imagem['url']) ? $imagem['url'] : '') }}" placeholder="Informe a URL da Imagem. http://www.site.com/imagem.jpg" disabled>
 											</div>
 											<div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
 												<div class="col-xs-6" style="padding-left:0px;">
 													<label for="autoria">Autor:</label>
-													<input type="text" class="form-control" name="imagens[{{ $key }}][autor]" id="imagem_autor_{{ $key }}" placeholder="Informe o Autor da Imagem" value="{{ (isset($imagem['autor']) ? $imagem['autor'] : '') }}">
+													<input type="text" class="form-control" name="imagens[{{ $key }}][autor]" id="imagem_autor_{{ $key }}" placeholder="Informe o Autor da Imagem" value="{{ (isset($imagem['autor']) ? $imagem['autor'] : '') }}" disabled>
 												</div>
 												<div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
 													<label for="autoria">Fonte:</label>
-													<input type="text" class="form-control" name="imagens[{{ $key }}][fonte]" id="imagem_fonte_{{ $key }}" placeholder="Informe a Fonte da Imagem" value="{{ (isset($imagem['fonte']) ? $imagem['fonte'] : '') }}">
+													<input type="text" class="form-control" name="imagens[{{ $key }}][fonte]" id="imagem_fonte_{{ $key }}" placeholder="Informe a Fonte da Imagem" value="{{ (isset($imagem['fonte']) ? $imagem['fonte'] : '') }}" disabled>
 												</div>
 											</div>
 											<div class="col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
 												<div class="col-xs-6" style="padding-left:0px;">
-													<div class="form-group">
-														<div class="radio">
-															<div class="col-xs-6" style="padding-left:0px;">
-																<label for="imagem_princ">Imagem Principal?</label>
-															</div>
-															<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
-																Sim <input type="radio" class="minimal" value="1" name="imagens[{{ $key }}][princ]" id="imagem_princ_{{ $key }}" {{ ( isset($imagem['princ']) &&  $imagem['princ'] == '1' ? 'checked' : '') }}>
-															</div>
-														</div>
-													</div>
 												</div>
 												<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
-													<button type="submit" id="remove_imagem_{{ $key }}" class="btn btn-danger btn-xs remove-image" title="Excluir"><i class="fa fa-trash"></i> Excluir</button>
 												</div>
 											</div>
 										</div>
@@ -216,8 +199,8 @@
 			</div>
 
 			<div class="box-footer">
-				<button type="submit" class="btn btn-success" title="Salvar">Salvar</button>
-				<a href="{{ route('planta.index.get') }}" class="btn btn-danger" title="Salvar">Cancelar</a>
+				<a href="{{ route('planta.edit.get', $planta['id']) }}" class="btn btn-primary" title="Editar">Editar</a>
+				<a href="{{ url()->previous() }}" class="btn btn-warning " title="Voltar">Voltar</a>
 			</div>
 		</div>
 		<!-- /.box -->
@@ -236,8 +219,17 @@
 				confirmKeys: [13, 188],
 				tagClass: function(item) {
 					return 'label label-primary';
-				}
+				},
+				interactive: false,
+				freeinput: false
 			});
+
+			function disableTagsInput(){
+				$(".bootstrap-tagsinput > input").prop("readonly", true);
+			}
+
+			disableTagsInput();			
+
 			$('.bootstrap-tagsinput input').on('keypress', function(e){
 				if (e.keyCode == 13){
 					e.keyCode = 188;
@@ -269,23 +261,6 @@
 				radioClass   : 'iradio_minimal-blue'
 			});
 
-			//Date picker
-			$('#ep_floracao_inicio,#ep_floracao_fim').datepicker({
-				autoclose: true,
-				language: 'pt-BR',
-				format: "mm",
-				viewMode: "months", 
-				minViewMode: "months",
-				changeMonth: false,
-				changeYear: false,
-				showButtonPanel: false,
-				stepMonths: 0,
-				minDate: 0,
-				maxDate: 0,
-				startVal: 0,
-				endVal: 0
-			});
-
 			function start_FileStyle(){
 				$(":file").filestyle({
 					buttonName: "btn-primary",
@@ -293,135 +268,23 @@
 				});
 			}
 			
-			$(".add-imagem").click(function(){ 
-				var index = $('#after-add-more').children('div.row').length;
-				if(index < 6){
-					$("#after-add-more").append(templateImagemInput(index));
-					startiCheck('imagem_princ_', index);
-					disableButtonRemove('remove_imagem_'+index);
-				}else{
-					$('.add-imagem').prop("disabled", true);
-				}
+			window.lightbox.option({
+				albumLabel: 'Imagem %1 de %2',
+				alwaysShowNavOnTouchDevices: true,
+				fadeDuration: 1000,
+				fitImagesInViewport: true,
+				imageFadeDuration: 1000,
+				maxHeight: 600,
+				positionFromTop: 0,
+				resizeDuration: 700,
+				showImageNumberLabel: true,
+				wrapAround: true,
+				disableScrolling: true,
 			});
-			$("body").on("click",".remove",function(){ 
-				$(this).parents(".control-group").remove();
-			});
+			
 		});
 
-		$("button.remove-image").click(function( event ) {
-			removeImage(this);
-			event.preventDefault();
-		});
-
-		function disableButtonRemove(element){
-			$('#'+element).click(function( event ) {
-				removeImage($('#'+element));
-				event.preventDefault();
-				
-			});
-		}
-		function removeImage(obj){
-			console.log(obj);
-			console.log($(obj));
-			$(obj).parent().parent().parent().parent().parent().parent().parent().remove();
-		}
-
-		function loadImageWeb(obj){
-			var url = $(obj).val();
-			if (validURL(url)){
-				var image = $(obj).parent().parent().parent().children('div.col-xs-4').find('[id^=imagem_preview_]').first();
-				var $downloadingImage = $("<img>");
-				$(obj).parent().parent().parent().children('div.col-xs-4').find('[id^=overlay_]').first().removeClass('overlay-hide');
-				$(image).on('load', function () {
-					$(image).parent().next().addClass('overlay-hide');
-				}).on('error', function(){
-					var id = $(this).attr('id');
-					var id_input = id.split('_').pop();
-					$('#imagem_url_'+id_input).val('');
-					$(this).attr('src', imagemPlantaDefault());
-				});
-
-				var loadImage = function(){
-					setTimeout(function(){
-						image.attr("src", url);
-					}, 2000);
-				}
-				loadImage();
-			}else{
-				$(obj).val('');
-			}
-		}
-
-		function validURL(str) {
-			var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-				'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-				'((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-				'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-				'(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-				'(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-			return !!pattern.test(str);
-		}
-
-		function imagemPlantaDefault(){
-			var image = '{{ asset('public/img/img-planta-default-336x180.png') }}';
-			return image;
-		}
-
-		function templateImagemInput(index){
-			let template = `<div class="row">
-				<div class="col-md-12">
-					<div class="form-group">
-						<div class="row vertical-align">
-							<div class="col-xs-4">
-							<div class="content-img">
-								<a href="#" class="thumbnail" style="margin-bottom: 0px;">
-									<img id="imagem_preview_${index}" class="thumb-planta" src="${imagemPlantaDefault()}" alt="Nome da Imagem" title="Imagem ${index+1}">
-								</a>
-								<div id="overlay_${index}" class="overlay overlay-hide">
-									<div class="overlay-content"><img src="{{ asset('public/img/loading.gif') }}" alt="Carregando..."/></div>
-								</div>
-							</div>
-							</div>
-							<div class="col-xs-8" style="padding-left:0px;">
-								<div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
-									<label for="url">URL</label>	
-									<input type="text" class="form-control" onchange="loadImageWeb(this)" name="imagens[${index}][url]" id="imagem_url_${index}" value="" placeholder="Informe a URL da Imagem. http://www.site.com/imagem.jpg">
-								</div>
-								<div class="col-xs-12" style="padding-left:0px;padding-right:0px;">
-									<div class="col-xs-6" style="padding-left:0px;">
-										<label for="autoria">Autor:</label>
-										<input type="text" class="form-control" name="imagens[${index}][autor]" id="imagem_autor_${index}" placeholder="Informe o Autor da Imagem" value="">
-									</div>
-									<div class="col-xs-6" style="padding-left:0px;padding-right:0px;">
-										<label for="autoria">Fonte:</label>
-										<input type="text" class="form-control" name="imagens[${index}][fonte]" id="imagem_fonte_${index}" placeholder="Informe a Fonte da Imagem" value="">
-									</div>
-								</div>
-								<div class="col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
-									<div class="col-xs-6" style="padding-left:0px;">
-										<div class="form-group">
-											<div class="radio">
-												<div class="col-xs-6" style="padding-left:0px;">
-													<label for="imagem_princ" style="padding-left:0px;">Imagem Principal?</label>
-												</div>
-												<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
-													Sim <input type="radio" class="minimal" value="1" name="imagens[${index}][princ]" id="imagem_princ_${index}" {{ (old('imagem_princ') == '1' ? 'checked' : '') }}>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
-										<button type="submit" id="remove_imagem_${index}" class="btn btn-danger btn-xs remove-image" title="Excluir"><i class="fa fa-trash"></i> Excluir</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /.form-group -->
-				</div>
-			</div>`;
-			return template;
-		}
+		
 
 	</script>
 @append

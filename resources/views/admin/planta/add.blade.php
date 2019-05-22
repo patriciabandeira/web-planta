@@ -2,7 +2,7 @@
 
 
 
-@section('title', 'Adicionar Nova Planta')
+@section('title', 'Cadastro Nova Planta')
 
 @section('content_header')
     <h1>Adicionar <small>Nova Planta</small></h1>
@@ -212,11 +212,9 @@
 				
 				<!-- Copy Fields -->
 				<div id="after-add-more">
-					{{var_dump(old('imagens'))}}<br>
 					@if(old('imagens') && is_array(old('imagens')))
-						@foreach(old('imagens') as $key => $imagem)
+						@foreach(Helper::remove_empty_itens_array(old('imagens'), true) as $key => $imagem)
 						@if(is_numeric($key) && is_array($imagem))
-						{{ $imagem['url'] }}
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
@@ -248,16 +246,6 @@
 											</div>
 											<div class="col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
 												<div class="col-xs-6" style="padding-left:0px;">
-													<div class="form-group">
-														<div class="radio">
-															<div class="col-xs-6" style="padding-left:0px;">
-																<label for="imagem_princ">Imagem Principal?</label>
-															</div>
-															<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
-																Sim <input type="radio" class="minimal" value="1" name="imagens[{{ $key }}][princ]" id="imagem_princ_{{ $key }}" {{ ( isset($imagem['princ']) &&  $imagem['princ'] == '1' ? 'checked' : '') }}>
-															</div>
-														</div>
-													</div>
 												</div>
 												<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
 													<button type="submit" id="remove_imagem_{{ $key }}" class="btn btn-danger btn-xs remove-image" title="Excluir"><i class="fa fa-trash"></i> Excluir</button>
@@ -358,7 +346,7 @@
 				if(index < 6){
 					$("#after-add-more").append(templateImagemInput(index));
 					startiCheck('imagem_princ_', index);
-					disableButtonRemove('remove_imagem_'+index);
+					disableButtonAdd('remove_imagem_'+index);
 				}else{
 					$('.add-imagem').prop("disabled", true);
 				}
@@ -373,11 +361,13 @@
 			event.preventDefault();
 		});
 
-		function disableButtonRemove(element){
+		function disableButtonAdd(element){
 			$('#'+element).click(function( event ) {
 				removeImage($('#'+element));
 				event.preventDefault();
-				
+				if($('.add-imagem').prop("disabled") == true){
+					$('.add-imagem').prop("disabled", false);
+				}
 			});
 		}
 		function removeImage(obj){
@@ -459,16 +449,6 @@
 								</div>
 								<div class="col-xs-12" style="padding-left:0px;padding-right:0px;margin-top:10px;">
 									<div class="col-xs-6" style="padding-left:0px;">
-										<div class="form-group">
-											<div class="radio">
-												<div class="col-xs-6" style="padding-left:0px;">
-													<label for="imagem_princ" style="padding-left:0px;">Imagem Principal?</label>
-												</div>
-												<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
-													Sim <input type="radio" class="minimal" value="1" name="imagens[${index}][princ]" id="imagem_princ_${index}" {{ (old('imagem_princ') == '1' ? 'checked' : '') }}>
-												</div>
-											</div>
-										</div>
 									</div>
 									<div class="col-xs-6" style="padding-left:0px;padding-right:0px;text-align:right;">
 										<button type="submit" id="remove_imagem_${index}" class="btn btn-danger btn-xs remove-image" title="Excluir"><i class="fa fa-trash"></i> Excluir</button>

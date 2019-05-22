@@ -13,6 +13,7 @@ use App\Estado;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Imagem;
+use App\Helpers\Helper;
 
 class PlantaController extends Controller
 {
@@ -63,9 +64,7 @@ class PlantaController extends Controller
     public function viewGet($id)
     {
         $planta = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica', 'imagens'])->first();
-        //print_r($planta);
-        //exit;
-        if(isset($planta['id'])){
+        if(isset($planta->id)){
             $biomas = Bioma::all();
             $estados = Estado::all();
             $lista_iucn = Planta::lista_iucn();
@@ -73,8 +72,13 @@ class PlantaController extends Controller
             return view('admin.planta.view', compact('planta', 'biomas', 'estados', 'lista_iucn', 'lista_meses'));
         }else{
             return redirect()->route('planta.index.get')->with('erro', 'Planta Inválida!');
-        }
-        
+        } 
+    }
+
+    public function editGet($id)
+    {
+        $planta = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica', 'imagens'])->first();
+        print_r(Helper::remove_empty_itens_array($planta->imagens->toArray()));   
     }
 
     public function addPost(PlantaRequest $request)
@@ -88,10 +92,8 @@ class PlantaController extends Controller
                 'grau_ameaca_iucn', 'descricao'
             ]));
             if ($planta->id) {
-                $bioma_ids = $request->input('biomas');
-                $planta->biomas()->sync($bioma_ids);
-                $estado_ids = $request->input('dist_geografica');
-                $planta->dist_geografica()->sync($estado_ids);
+                $planta->biomas()->sync($request->input('biomas'));
+                $planta->dist_geografica()->sync($request->input('dist_geografica'));
                 $imagens = $request->input('imagens');
                 foreach ($imagens as $imagem) {
                     $imagem['planta_id'] = $planta->id;
