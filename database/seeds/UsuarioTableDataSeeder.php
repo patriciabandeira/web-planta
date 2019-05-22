@@ -8,7 +8,7 @@ use App\User;
 
   
 
-class UsersTableDataSeeder extends Seeder
+class UsuarioTableDataSeeder extends Seeder
 
 {
 
