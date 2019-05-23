@@ -42,7 +42,7 @@ class PlantaRequest extends FormRequest
     {
         return [
             'nome_cientifico' => 'required|max:255',
-            'nome_popular' => 'required|max:255',
+            'nome_popular' => 'required|max:500',
             'autoria' => 'max:255',
             'e_panc' => 'required',
             'grau_ameaca_iucn' => [

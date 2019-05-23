@@ -22,16 +22,17 @@ class Imagem extends Model
      * @var array
      */
     protected $fillable = [
-        'url', 'autor', 'fonte', 'planta_id'
+        'id', 'url', 'autor', 'fonte', 'planta_id'
     ];
 
     protected $visible = [
-        'id', 'url', 'autor', 'fonte'
+        'id', 'url', 'autor', 'fonte', 'planta_id'
     ];
 
     public function planta()
     {
-        return $this->belongsTo(Planta::class, 'planta_id', 'id');
+        //return $this->belongsTo(Planta::class, 'planta_id', 'id');
+        return $this->belongsTo(Planta::class);
     }
 
 }

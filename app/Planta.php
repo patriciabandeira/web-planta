@@ -38,6 +38,7 @@ class Planta extends Model
         'vu' => 'Vulnerável (VU)',
         'nt' => 'Quase ameaçada (NT)',
         'lc' => 'Segura ou pouco preocupante (LC)',
+        'ne' => 'Espécie não avaliada quanto à ameaça (NE)',
     ];
 
     public static function lista_iucn($item = null){
@@ -66,22 +67,19 @@ class Planta extends Model
      * @var array
      */
     protected $casts = [
-        ///'dist_geografica' => 'array',
+
     ];
 
-    //public function getDistGeograficaAttribute($value){
-    //    $value = unserialize($value);
-    //    return $value;
-    //}
 
     // having this mutator
-    public function setImagensAttribute($value){
-        $this->imagens = $value;
-    }
+    //public function setImagensAttribute($value){
+    //    $this->imagens = $value;
+    //}
     
     public function imagens()
     {
-        return $this->hasMany(Imagem::class, 'planta_id', 'id');
+        //return $this->hasMany(Imagem::class, 'planta_id', 'id');
+        return $this->hasMany(Imagem::class);
     }
 
     public function biomas()

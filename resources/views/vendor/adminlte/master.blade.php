@@ -179,6 +179,16 @@
 <script src="{{ asset('public/vendor/adminlte/vendor/bootstrap-filestyle/src/bootstrap-filestyle.min.js') }}"></script>
 <script src="{{ asset('public/vendor/adminlte/vendor/lightbox2/dist/js/lightbox.min.js') }}"></script>
 
+<script src="{{ asset('public/js/functions.js') }}"></script>
+
+<script>
+    img_loading = '{{ asset('public/img/loading.gif') }}';
+    function imagemPlantaDefault(){
+        var image = '{{ asset('public/img/img-planta-default-336x180.png') }}';
+        return image;
+    }
+</script>
+
 
 @yield('custom_js')
 

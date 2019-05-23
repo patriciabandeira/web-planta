@@ -47,11 +47,12 @@
 								@foreach($plantas as $planta)
 								<tr>
 									<td style="vertical-align:middle;" class="align-middle">{{ $planta->id }}</td>
-									<td style="vertical-align:middle;" class="align-middle">{{ str_limit($planta->nome_cientifico, 50) }}</td>
+									<td style="vertical-align:middle;" class="align-middle"><i>{{ str_limit($planta->nome_cientifico, 50) }}</i></td>
 									<td style="vertical-align:middle;" class="align-middle">{{ str_limit($planta->nome_popular, 50) }}</td>
 									<td style="vertical-align:middle;" class="text-center align-middle">
 										<div style="display:block;min-width:50px !important;">
-											<a class="btn btn-info btn-xs" style="" href="{{ route('planta.view.get', $planta->id)}}" role="button" title="Ver"><i class="fa fa-eye"></i></a>	
+											<a class="btn btn-info btn-xs" style="" href="{{ route('planta.view.get', $planta->id)}}" role="button" title="Ver"><i class="fa fa-eye"></i></a>
+											<a href="{{ route('planta.edit.get', $planta['id']) }}" class="btn btn-primary btn-xs" title="Editar"><i class="fa fa-pencil"></i></a>
 											<form id="del_planta_{{$planta->id}}" class="delete" style="display: inline-block;" action="{{ route('planta.delete', $planta->id)}}" method="POST">			
 												<button type="text" id="btn_del_planta_{{$planta->id}}" class="btn btn-danger btn-xs" title="Excluir"><i class="fa fa-trash"></i></button>
 												@csrf
@@ -108,35 +109,6 @@
 				idform = $(this).attr('data-idform');
 				$('#'+idform).submit();
 			});
-		}
-
-		
-
-		function templateModalDelete(titulo, mensagem, data){
-			let template = `
-			<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div style="max-width: 96%; margin: auto; height: 100%;">
-					<div class="vertical-alignment-helper">
-						<div class="modal-dialog vertical-align-center">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									<h4 class="modal-title" id="modalLabel"><strong>${titulo}</strong></h4>
-								</div>
-								<div class="modal-body">
-									${mensagem}
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal" title="Cancelar">Cancelar</button>
-									<button type="button" class="btn btn-danger delete-confirm" data-idform="${data}" title="Excluir">Excluir</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			`;
-			return template;
 		}
 	</script>
 @append

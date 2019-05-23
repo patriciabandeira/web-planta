@@ -18,6 +18,13 @@
 			</div>
 			<!-- /.box-header -->
 			<div class="box-body">
+				@if (session()->has('sucesso'))
+				<div class="alert alert-success alert-dismissible">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					<h4><i class="icon fa fa-check"></i> Sucesso!</h4>
+					{{ session('sucesso') }}
+				</div>
+				@endif
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
@@ -60,7 +67,7 @@
 										<select name="ep_floracao_inicio" class="form-control select2" style="width: 100%;" data-placeholder="Selecione" disabled>
 											<option></option>
 										@foreach($lista_meses as $key_mes=>$item_mes)                                   
-											<option value="{{ $key_mes }}"}} {{ ($planta['ep_floracao_inicio'] == $key_mes ? 'selected' : '') }}>
+											<option value="{{ $key_mes }}" {{ ($planta['ep_floracao_inicio'] == $key_mes ? 'selected' : '') }}>
 												{{ $item_mes }}
 											</option>
 										@endforeach
@@ -76,7 +83,7 @@
 										<select name="ep_floracao_fim" class="form-control select2" style="width: 100%;" data-placeholder="Selecione" disabled>
 											<option></option>
 										@foreach($lista_meses as $key_mes=>$item_mes)                                   
-											<option value="{{ $key_mes }}"}} {{ ($planta['ep_floracao_fim'] == $key_mes ? 'selected' : '') }}>
+											<option value="{{ $key_mes }}" {{ ($planta['ep_floracao_fim'] == $key_mes ? 'selected' : '') }}>
 												{{ $item_mes }}
 											</option>
 										@endforeach
@@ -93,8 +100,8 @@
 							<label>Grau de Risco IUCN</label>
 							<select name="grau_ameaca_iucn" class="form-control select2" style="width: 100%;" data-placeholder="Selecione" disabled>
 								<option></option>
-							@foreach($lista_iucn as $key_iucn=>$item_iucn)                                   
-								<option value="{{ $key_iucn }}"}} {{ ($planta['grau_ameaca_iucn'] == $key_iucn ? 'selected' : '') }}>
+							@foreach($lista_iucn as $key_iucn=>$item_iucn)
+								<option value="{{ $key_iucn }}" {{ ($planta['grau_ameaca_iucn'] == $key_iucn ? 'selected' : '') }}>
 									{{ $item_iucn }}
 								</option>
 							@endforeach
@@ -105,7 +112,7 @@
 							<label>Biomas</label>
 							<select name="biomas[]" class="form-control select2" multiple="multiple" data-placeholder="Selecione o(s) Bioma(s)" style="width: 100%;" disabled>
 								@foreach($biomas as $skey=>$bioma)
-									<option value="{{$bioma->id }}"}} {{ ($planta->biomas->contains($bioma->id) ? 'selected' : '') }}>
+									<option value="{{$bioma->id }}" {{ ($planta->biomas->contains($bioma->id) ? 'selected' : '') }}>
 										{{ $bioma->nome }}
 									</option>
 								@endforeach
@@ -117,7 +124,7 @@
 							<label>Distribuição Geográfica</label>
 							<select name="dist_geografica[]" class="form-control select2" multiple="multiple" data-placeholder="Selecione o(s) Estados(s)" style="width: 100%;" disabled>
 								@foreach($estados as $estado)
-									<option value="{{ $estado->id }}"}} {{ ($planta->dist_geografica->contains($estado->id) ? 'selected' : '') }}>
+									<option value="{{ $estado->id }}" {{ ($planta->dist_geografica->contains($estado->id) ? 'selected' : '') }}>
 										{{ $estado->nome }} ({{ $estado->sigla }})
 									</option>
 								@endforeach
@@ -142,7 +149,7 @@
 			<div class="box-body">
 				<div class="row">
 					<div class="col-md-12">
-						<h4 class="box-title">Imagens</h3>
+						<h4 class="box-title">Imagens</h4>
 					</div>
 					<div class="col-md-12">
 						
@@ -200,7 +207,7 @@
 
 			<div class="box-footer">
 				<a href="{{ route('planta.edit.get', $planta['id']) }}" class="btn btn-primary" title="Editar">Editar</a>
-				<a href="{{ url()->previous() }}" class="btn btn-warning " title="Voltar">Voltar</a>
+				<a href="{{ route('planta.index.get') }}" class="btn btn-warning " title="Voltar">Voltar</a>
 			</div>
 		</div>
 		<!-- /.box -->
@@ -266,21 +273,9 @@
 					buttonName: "btn-primary",
 					buttonText : 'Selecione',
 				});
-			}
-			
-			window.lightbox.option({
-				albumLabel: 'Imagem %1 de %2',
-				alwaysShowNavOnTouchDevices: true,
-				fadeDuration: 1000,
-				fitImagesInViewport: true,
-				imageFadeDuration: 1000,
-				maxHeight: 600,
-				positionFromTop: 0,
-				resizeDuration: 700,
-				showImageNumberLabel: true,
-				wrapAround: true,
-				disableScrolling: true,
-			});
+			}	
+
+			configLightbox();
 			
 		});
 

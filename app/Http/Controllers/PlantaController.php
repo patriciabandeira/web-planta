@@ -75,12 +75,6 @@ class PlantaController extends Controller
         } 
     }
 
-    public function editGet($id)
-    {
-        $planta = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica', 'imagens'])->first();
-        print_r(Helper::remove_empty_itens_array($planta->imagens->toArray()));   
-    }
-
     public function addPost(PlantaRequest $request)
     {
         $sucesso = false;
@@ -95,10 +89,12 @@ class PlantaController extends Controller
                 $planta->biomas()->sync($request->input('biomas'));
                 $planta->dist_geografica()->sync($request->input('dist_geografica'));
                 $imagens = $request->input('imagens');
-                foreach ($imagens as $imagem) {
-                    $imagem['planta_id'] = $planta->id;
-                    $planta->imagens()->save(new Imagem($imagem));
-                }                
+                if(!empty($imagens)){
+                    foreach ($imagens as $imagem) {
+                        $imagem['planta_id'] = $planta->id;
+                        $planta->imagens()->save(new Imagem($imagem));
+                    }
+                }    
                 $sucesso = true;
             }
         } catch (\Exception $e) {
@@ -110,6 +106,60 @@ class PlantaController extends Controller
         } else {
             DB::rollback();
             return Redirect::back()->with('erro','Erro ao Cadastrar Planta!');
+        }
+    }
+
+    public function editGet($id)
+    {
+        $planta = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica', 'imagens'])->first();
+        if(isset($planta->id)){
+            $biomas = Bioma::all();
+            $estados = Estado::all();
+            $lista_iucn = Planta::lista_iucn();
+            $lista_meses = Planta::lista_meses();
+            return view('admin.planta.edit', compact('planta', 'biomas', 'estados', 'lista_iucn', 'lista_meses'));
+        }else{
+            return redirect()->route('planta.index.get')->with('erro', 'Planta Inválida!');
+        } 
+        
+        print_r($planta->toArray());
+        exit;
+    }
+
+    public function editPost(PlantaRequest $request)
+    {
+        $planta = Planta::find($request->id);
+        $sucesso = false;
+        DB::beginTransaction();
+        try {
+            if ($planta->id) {
+                $planta->update($request->only([
+                    'nome_cientifico', 'nome_popular', 'autoria',
+                    'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim',
+                    'grau_ameaca_iucn', 'descricao'
+                ]));
+                $planta->biomas()->sync($request->input('biomas'));
+                $planta->dist_geografica()->sync($request->input('dist_geografica'));
+                $imagens = Helper::remove_empty_itens_array($request->input('imagens'), true);
+                $planta->imagens()->delete();
+                if(!empty($imagens)){
+                    foreach ($imagens as $key => $imagem) {
+                        $imagens[$key]['planta_id'] = $planta->id;
+                        $imagens[$key] = new Imagem($imagens[$key]);
+                    }
+                    $planta->imagens()->saveMany($imagens);
+                }
+                $sucesso = true;
+            }
+        } catch (\Exception $e) {
+
+        }
+        if ($sucesso) {
+            DB::commit();
+            return redirect()->route('planta.view.get', $planta->id)->with('sucesso', 'Planta Atualizada com Sucesso!');
+        } else {
+            DB::rollback();
+            return Redirect::back()->with('erro','Erro ao Atualizar Planta!');
         }
     }
 

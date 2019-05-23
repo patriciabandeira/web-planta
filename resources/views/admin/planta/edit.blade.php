@@ -2,14 +2,14 @@
 
 
 
-@section('title', 'Cadastro Nova Planta')
+@section('title', 'Edição de Planta')
 
 @section('content_header')
-    <h1>Adicionar <small>Nova Planta</small></h1>
+    <h1>Editar <small> Planta</small></h1>
 @stop
 
 @section('content')
-	<form action="{{ route('planta.add.post') }}" method="post">
+	<form action="{{ route('planta.edit.post', $planta['id']) }}" method="post">
 		{!! csrf_field() !!}
 		<!-- SELECT2 EXAMPLE -->
 		<div class="box box-primary">
@@ -33,7 +33,7 @@
 					<div class="col-md-6">
 						<div class="form-group {{ $errors->has('nome_cientifico') ? 'has-error' : '' }}">
 							<label for="nome_cientifico">Nome Científico</label>
-							<input type="text" class="form-control" name="nome_cientifico" id="nome_cientifico" placeholder="Informe o Nome Científico" value="{{ old('nome_cientifico') }}">
+							<input type="text" class="form-control" name="nome_cientifico" id="nome_cientifico" placeholder="Informe o Nome Científico" value="{{ (old('nome_cientifico') !== null ? old('nome_cientifico') : $planta['nome_cientifico']) }}">
 							@if ($errors->has('nome_cientifico'))
 							<span class="help-block">
 								{{ $errors->first('nome_cientifico') }}
@@ -42,7 +42,7 @@
 						</div>
 						<div class="form-group {{ $errors->has('nome_popular') ? 'has-error' : '' }}">
 							<label for="nome_popular">Nome(s) Popular(es)</label> {{ old('nome_popular') }}
-							<input type="text" class="form-control" style="width: 100%;" name="nome_popular" id="nome_popular" placeholder="Informe os Nomes Populares" value="{{ old('nome_popular') }}"/>
+							<input type="text" class="form-control" style="width: 100%;" name="nome_popular" id="nome_popular" placeholder="Informe os Nomes Populares" value="{{ (old('nome_popular') !== null ? old('nome_popular') : $planta['nome_popular']) }}"/>
 							@if ($errors->has('nome_popular'))
 							<span class="help-block">
 								{{ $errors->first('nome_popular') }}
@@ -52,7 +52,7 @@
 
 						<div class="form-group {{ $errors->has('autoria') ? 'has-error' : '' }}">
 							<label for="autoria">Autoria</label>
-							<input type="text" class="form-control" name="autoria" id="autoria" placeholder="Informe a Autoria" value="{{ old('autoria') }}">
+							<input type="text" class="form-control" name="autoria" id="autoria" placeholder="Informe a Autoria" value="{{ (old('autoria') !== null ? old('autoria') : $planta['autoria']) }}">
 							@if ($errors->has('autoria'))
 							<span class="help-block">
 								{{ $errors->first('autoria') }}
@@ -65,11 +65,11 @@
 							<div class="radio">
 								<label>
 									Sim
-									<input type="radio" class="minimal" value="1" name="e_panc" id="e_panc_sim" {{ (old('e_panc') == '1' ? 'checked' : '') }}>
+									<input type="radio" class="minimal" value="1" name="e_panc" id="e_panc_sim" {{ (old('e_panc') !== null ? (old('e_panc') == '1' ? 'checked' : '') : ($planta['e_panc'] == '1' ? 'checked' : '')) }}>
 								</label>
 								<label>
 									Nao
-									<input type="radio" class="minimal" value="0" name="e_panc" id="e_panc_sim" {{ (old('e_panc') == '0' ? 'checked' : '') }}>
+									<input type="radio" class="minimal" value="0" name="e_panc" id="e_panc_nao" {{ (old('e_panc') !== null ? (old('e_panc') == '0' ? 'checked' : '') : ($planta['e_panc'] == '0' ? 'checked' : '')) }}>
 								</label>
 							</div>
 							@if ($errors->has('e_panc'))
@@ -90,8 +90,8 @@
 										</div>
 										<select name="ep_floracao_inicio" class="form-control select2" style="width: 100%;" data-placeholder="Selecione">
 											<option></option>
-										@foreach($lista_meses as $key_mes=>$item_mes)                                   
-											<option value="{{ $key_mes }}" {{ (old('ep_floracao_inicio') == $key_mes ? 'selected' : '') }}>
+										@foreach($lista_meses as $key_mes=>$item_mes)
+											<option value="{{ $key_mes }}"}} {{ (old('ep_floracao_inicio') !== null ? (old('ep_floracao_inicio') == $key_mes ? 'selected' : '') : ($planta['ep_floracao_inicio'] == $key_mes ? 'selected' : '')) }}>
 												{{ $item_mes }}
 											</option>
 										@endforeach
@@ -111,8 +111,8 @@
 										</div>
 										<select name="ep_floracao_fim" class="form-control select2" style="width: 100%;" data-placeholder="Selecione">
 											<option></option>
-										@foreach($lista_meses as $key_mes=>$item_mes)                                   
-											<option value="{{ $key_mes }}" {{ (old('ep_floracao_fim') == $key_mes ? 'selected' : '') }}>
+										@foreach($lista_meses as $key_mes=>$item_mes)
+											<option value="{{ $key_mes }}"}} {{ (old('ep_floracao_fim') !== null ? (old('ep_floracao_fim') == $key_mes ? 'selected' : '') : ($planta['ep_floracao_fim'] == $key_mes ? 'selected' : '')) }}>
 												{{ $item_mes }}
 											</option>
 										@endforeach
@@ -134,8 +134,8 @@
 							<label>Grau de Risco IUCN</label>
 							<select name="grau_ameaca_iucn" class="form-control select2" style="width: 100%;" data-placeholder="Selecione">
 								<option></option>
-							@foreach($lista_iucn as $key_iucn=>$item_iucn)                                   
-								<option value="{{ $key_iucn }}" {{ (old('grau_ameaca_iucn') == $key_iucn ? 'selected' : '') }}>
+							@foreach($lista_iucn as $key_iucn=>$item_iucn)
+								<option value="{{ $key_iucn }}"}} {{ (old('grau_ameaca_iucn') !== null ? (old('grau_ameaca_iucn') == $key_iucn ? 'selected' : '') : ($planta['grau_ameaca_iucn'] == $key_iucn ? 'selected' : '')) }}>
 									{{ $item_iucn }}
 								</option>
 							@endforeach
@@ -151,7 +151,7 @@
 							<label>Biomas</label>
 							<select name="biomas[]" class="form-control select2" multiple="multiple" data-placeholder="Selecione o(s) Bioma(s)" style="width: 100%;">
 								@foreach($biomas as $skey=>$bioma)
-									<option value="{{$bioma->id }}" {{ (collect(old('biomas'))->contains($bioma->id) ? 'selected' : '') }}>
+									<option value="{{$bioma->id }}" {{ (old('biomas') !== null ? (collect(old('biomas'))->contains($bioma->id) ? 'selected' : '') : ($planta['biomas']->contains($bioma->id) ? 'selected' : '')) }}>
 										{{ $bioma->nome }}
 									</option>
 								@endforeach
@@ -168,7 +168,7 @@
 							<label>Distribuição Geográfica</label>
 							<select name="dist_geografica[]" class="form-control select2" multiple="multiple" data-placeholder="Selecione o(s) Estados(s)" style="width: 100%;">
 								@foreach($estados as $estado)
-									<option value="{{ $estado->id }}" {{ (collect(old('dist_geografica'))->contains($estado->id) ? 'selected' : '') }}>
+									<option value="{{ $estado->id }}" {{ (old('dist_geografica') !== null ? (collect(old('dist_geografica'))->contains($estado->id) ? 'selected' : '') : ($planta['dist_geografica']->contains($estado->id) ? 'selected' : '')) }}>
 										{{ $estado->nome }} ({{ $estado->sigla }})
 									</option>
 								@endforeach
@@ -183,7 +183,7 @@
 
 						<div class="form-group {{ $errors->has('descricao') ? 'has-error' : '' }}">
 							<label for="descricao">Descrição</label>
-							<textarea class="form-control" rows="6" name="descricao" id="descricao" placeholder="Informe a Descrição">{{ old('descricao') }}</textarea>
+							<textarea class="form-control" rows="6" name="descricao" id="descricao" placeholder="Informe a Descrição">{{ (old('descricao') !== null ? old('descricao') : $planta['descricao']) }}</textarea>
 							@if ($errors->has('descricao'))
 							<span class="help-block">
 								{{ $errors->first('descricao') }}
@@ -200,20 +200,31 @@
 			</div>
 			<!-- /.box-body -->
 
+			@if(!empty(old('imagens')))
+				@php
+				$imagens = Helper::remove_empty_itens_array(old('imagens'), true);
+				@endphp
+			@else
+				@php
+				$imagens = $planta->imagens->toArray();
+				@endphp
+			@endif
+
 			<div class="box-body">
 				<div class="row">
 					<div class="col-md-12">
-						<h4 class="box-title">Imagens</h4>
+						<h4 class="box-title">Imagens</h3>
 					</div>
 					<div class="col-md-12">
-						<button class="btn btn-success add-imagem" type="button" style="float:right;"><i class="glyphicon glyphicon-plus"></i> Nova Imagem</button>
+						<button class="btn btn-success add-imagem" type="button" style="float:right;" {{ (sizeof($imagens) < 6 ? '' : 'disabled' ) }}><i class="glyphicon glyphicon-plus"></i> Nova Imagem</button>
 					</div>
 				</div>
 				
 				<!-- Copy Fields -->
 				<div id="after-add-more">
-					@if(old('imagens') && is_array(old('imagens')))
-						@foreach(Helper::remove_empty_itens_array(old('imagens'), true) as $key => $imagem)
+					{{ var_dump($imagens) }}
+					@if(!empty($imagens))
+						@foreach($imagens as $key => $imagem)
 						@if(is_numeric($key) && is_array($imagem))
 						<div class="row">
 							<div class="col-md-12">
@@ -221,8 +232,8 @@
 									<div class="row vertical-align">
 										<div class="col-xs-4">
 										<div class="content-img">
-											<a href="#" class="thumbnail" style="margin-bottom: 0px;">
-												<img id="imagem_preview_{{ $key }}" class="thumb-planta" src="{{ (!isset($imagem['url']) ? asset('public/img/img-planta-default-336x180.png') : $imagem['url']) }}" alt="Imagem {{ $key+1 }}" title="Imagem {{ $key+1 }}">
+											<a class="thumbnail gallery" style="margin-bottom: 0px;" data-lightbox="imagens_planta" data-title="{{ (isset($imagem['autor']) ? 'Autor: '.$imagem['autor'] : '') }} <br> {{ (isset($imagem['fonte']) ? 'Fonte: '.$imagem['fonte'] : '') }}" href="{{ (!isset($imagem['url']) ? asset('public/img/img-planta-default-336x180.png') : $imagem['url']) }}">
+												<img id="imagem_preview_{{ $key }}" class="thumb-planta" src="{{ (!isset($imagem['url']) ? asset('public/img/img-planta-default-336x180.png') : $imagem['url']) }}" alt="Imagem {{ $key+1 }}" title="Imagem {{ $key+1 }}"/>
 											</a>
 											<div id="overlay_{{ $key }}" class="overlay overlay-hide">
 												<div class="overlay-content"><img src="{{ asset('public/img/loading.gif') }}" alt="Carregando..."/></div>
@@ -260,6 +271,7 @@
 						@endif
 						@endforeach
 					@endif
+					
 				</div>
 			</div>
 
