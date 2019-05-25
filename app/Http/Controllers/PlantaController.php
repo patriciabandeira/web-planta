@@ -25,7 +25,8 @@ class PlantaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
+        $this->middleware('auth', ['except' => ['apiPlantasGet', 'apiPlantaGet']]);
     }
 	
     /**
@@ -169,13 +170,19 @@ class PlantaController extends Controller
         return redirect()->route('planta.index.get')->with('sucesso', 'Planta Excluída com Sucesso!');
     }
 
-    public function plantaFullGet($id)
+    public function apiPlantasGet()
     {
-        $imagens = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica','imagens'])->get()->toArray();
+        $imagens = Planta::with(['biomas', 'dist_geografica','imagens'])->paginate(10)->toArray();
         return response()->json($imagens, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
     }
+    
+    public function apiPlantaGet($id)
+    {
+        $imagem = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica','imagens'])->get()->toArray();
+        return response()->json($imagem, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
+    }
 
-    public function imagensGet($id)
+    public function apiImagensGet($id)
     {
         $imagens = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica','imagens'])->get()->toArray();
         return response()->json($imagens, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);

@@ -34,10 +34,11 @@ Route::group(['prefix' => 'admin'], function () {
 		Route::get('/{id}/full', ['as' => 'full.get', 'uses' => 'PlantaController@plantaFullGet'])->where('id', '\d+');
 	});
 
-	// Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
-	// 	Route::group(['prefix' => 'imagem', 'as' => 'imagem.'], function () {
-	// 		Route::get('/', ['as' => 'index.get', 'uses' => 'PlantaController@index']);
-	// 		Route::get('/{id}', ['as' => 'find_by_id.get', 'uses' => 'PlantaController@findById'])->where('id', '\d+');		
-	// 	});
-	// });	
 });
+
+Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
+	Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
+		Route::get('/', ['as' => 'plantas.get', 'uses' => 'PlantaController@apiPlantasGet']);
+		Route::get('/{id}', ['as' => 'planta.get', 'uses' => 'PlantaController@apiPlantaGet'])->where('id', '\d+');		
+	});
+});	

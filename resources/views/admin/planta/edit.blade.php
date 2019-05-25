@@ -222,7 +222,6 @@
 				
 				<!-- Copy Fields -->
 				<div id="after-add-more">
-					{{ var_dump($imagens) }}
 					@if(!empty($imagens))
 						@foreach($imagens as $key => $imagem)
 						@if(is_numeric($key) && is_array($imagem))
