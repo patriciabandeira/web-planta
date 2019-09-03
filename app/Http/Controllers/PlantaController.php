@@ -172,13 +172,13 @@ class PlantaController extends Controller
 
     public function apiPlantasGet()
     {
-        $imagens = Planta::with(['biomas', 'dist_geografica','imagens'])->paginate(10)->toArray();
+        $imagens = Planta::with(['biomas', 'dist_geografica','imagens'])->paginate(20)->toArray();
         return response()->json($imagens, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
     }
     
     public function apiPlantaGet($id)
     {
-        $imagem = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica','imagens'])->get()->toArray();
+        $imagem = Planta::where('id', '=', $id)->with(['biomas', 'dist_geografica','imagens'])->first()->toArray();
         return response()->json($imagem, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
     }
 
