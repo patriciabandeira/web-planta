@@ -35,12 +35,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['pampa', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'DF', 'GO', 'MG', 'MS', 'MT', 'PA', 'RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
-		Imagem::create(['url' => 'http://imagens3.jbrj.gov.br/fsi/server?type=image&source=/reflora/producao/imagens_de_campo/1275323.jpg&width=3072&height=2304', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
-		Imagem::create(['url' => 'http://imagens3.jbrj.gov.br/fsi/server?type=image&source=/reflora/producao/imagens_de_campo/1275324.jpg&width=3072&height=2304', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
-		Imagem::create(['url' => 'http://imagens3.jbrj.gov.br/fsi/server?type=image&source=/reflora/producao/imagens_de_campo/1275325.jpg&width=2304&height=3072', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
-    Imagem::create(['url' => 'http://imagens3.jbrj.gov.br/fsi/server?type=image&source=/reflora/producao/imagens_de_campo/1275326.jpg&width=3072&height=2304', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
-    Imagem::create(['url' => 'http://imagens3.jbrj.gov.br/fsi/server?type=image&source=/reflora/producao/imagens_de_campo/1275323.jpg&width=3072&height=2304', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
-		Imagem::create(['url' => 'http://imagens3.jbrj.gov.br/fsi/server?type=image&source=/reflora/producao/imagens_de_campo/1275324.jpg&width=3072&height=2304', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://uploaddeimagens.com.br/images/002/295/780/full/imagem01.jpg', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://uploaddeimagens.com.br/images/002/295/811/full/imagem02.jpg', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://uploaddeimagens.com.br/images/002/295/815/full/imagem03.jpg', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
+    Imagem::create(['url' => 'https://uploaddeimagens.com.br/images/002/295/817/full/imagem04.jpg', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
+    Imagem::create(['url' => 'https://uploaddeimagens.com.br/images/002/295/819/full/imagem05.jpg', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://uploaddeimagens.com.br/images/002/295/821/full/imagem06.jpg', 'autor' => 'Renata C. Martins', 'fonte' => 'Sistema de Informação sobre a Biodiversidade Brasileira (SiBBr)', 'planta_id' => $planta->id]);
 
 
 	//AMBURANA
@@ -58,7 +58,11 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['pampa', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'PB', 'PE', 'PI', 'RN', 'SE', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
-   
+	Imagem::create(['url' => 'https://i.ibb.co/YbhxGWb/Folha.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/M6fgv6c/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/KjwZ7bD/tronco.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/stT8LQK/semente.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+
 
 	//ANGICO
     $planta = Planta::create(
@@ -75,6 +79,11 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['cerrado', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AM', 'BA', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PE', 'PR', 'RS', 'SC', 'SP'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/vPkc2L3/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/TvZ2r1N/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/k3XCNtc/img1.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/NscRKvh/img2.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/YcLqMQ7/plantula.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
   
 
 	//AROEIRA
@@ -92,23 +101,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['caatinga', 'mata_atlantica', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'DF', 'GO', 'MG', 'MS', 'MT', 'PA', 'RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
-   
-      
-	//BOCAIUVA
-    $planta = Planta::create(
-      [
-        'nome_popular' => 'bocaiuva,macaúba,coco-babão,coco-babosa,coco-macaúba,coqueiro-de-espinho,macajuba,macaibeira,palmeira-macaúva,coquinho',
-        'autoria' => 'Mart. ex Spreng.',
-        'nome_cientifico' => 'Acrocomia aculeata',
-        'e_panc' => 0,
-        'ep_floracao_inicio' => 'out',
-        'ep_floracao_fim' => 'fev',
-        'grau_ameaca_iucn' => 'ne',
-        'descricao' => '',
-      ]
-    );
-    $planta->biomas()->attach(Bioma::whereIn('cod', ['amozonia', 'cerrado',  'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
-    $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AM',' CE', 'DF', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PI', 'PE', 'PR', 'RJ', 'RR', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/jrZcvg6/individuo.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/BV6BC2N/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/RQNTCLC/tronco.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/YDzjDKh/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/F5F8C7p/semente.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/zNY8L2R/flor.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
 
 	
 	//CAJA
@@ -126,6 +124,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['amazonia', 'cerrado','mata_atlantica','pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA','MS','MT','PA','PB','PI','RJ','RN','RO','RS','SP','TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/wh2Dwhg/muda.jpg', 'autor' => 'Marcelo Kuhlmann', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/TwhPfHS/fruto.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/5r3yMcP/tronco.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/N733G5y/individuo.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/NLkBpc9/folha.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/NyGQHxr/flor.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
     
 	
 	//CAJU
@@ -143,23 +147,12 @@ class PlantaTableSeeder extends Seeder
     );
 	$planta->biomas()->attach(Bioma::whereIn('cod',['cerrado','pantanal'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['BA', 'DF', 'GO', 'MG', 'MS', 'MT', 'PR', 'RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
-   
-
-	//CAQUI DO CERRADO
-    $planta = Planta::create(
-      [
-        'nome_popular' => 'caquizeiro-do-mato,fruta-de-boi,fruta-de-jacu-fêmea,caqui-do-cerrado,bacupari-bravo,olho-de-boi',
-        'autoria' => ' A.DC.',
-        'nome_cientifico' => 'Diospyros hispida',
-        'e_panc' => 0,
-        'ep_floracao_inicio' => 'ago',
-        'ep_floracao_fim' => 'nov',
-        'grau_ameaca_iucn' => 'lc',
-        'descricao' => '',
-      ]
-    );
-    $planta->biomas()->attach(Bioma::whereIn('cod',['cerrado','pantanal'])->get('id')->pluck('id')->toArray());
-    $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'CE', 'DF', 'ES', 'GO','MA','MG','MS', 'MT', 'PA', 'PB','PI','PR','RJ','RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/N133LJT/folha.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/YLhp4Fz/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/YtKpM31/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/n1RBjfy/tronco.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/JqxGLQV/semente.jpg', 'autor' => 'Marcelo Kuhlmann', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/7Jjh4nT/flor.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
    
 	
 	//CARANDA
@@ -177,6 +170,11 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', [ 'pantanal'])->get('id')->pluck('id')->toArray());
 	$planta->dist_geografica()->attach(Estado::whereIn('sigla',['MS','MT'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/RhbGyQF/muda.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/JK7RXzs/fruto.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/8NBBKw5/folha.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/0F1SYpV/semente.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/Bfcnn0m/individuo.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
 
 	
 	//GONCALO
@@ -194,6 +192,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['cerrado', 'pantanal', 'mata_atlantica'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'AP','BA','CE', 'DF','GO','MA','MG','MS', 'MT', 'PA', 'PB','PI','RJ','RN', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/p2Gy7Dy/folha.jpg', 'autor' => 'Manoel Cláudio', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/SQgRYX9/fruto.jpg', 'autor' => 'Roberto Ogata', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/wQtvsLb/tronco.jpg', 'autor' => 'Manoel Cláudio', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/YtMKVfQ/plantula.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/JHKyPYb/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/Bcwc88w/flor.jpg', 'autor' => 'Manoel Cláudio', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
 
 
 	//IPE-AMARELO
@@ -211,6 +215,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['caatinga', 'cerrado', 'pantanal'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'GO', 'MA', 'MG', 'MS', 'MT', 'PB', 'PE', 'PI', 'PR', 'RN', 'SE', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/X3Fcv0p/individuo.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/ZWqwD5J/fruto.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/jRvMrJV/plantula.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/0QFBWC6/flor.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/Tw8bdGy/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/7tvRCSb/semente.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
    
 
 	//IPE-BRANCO
@@ -228,6 +238,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['mata_atlantica', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['GO', 'MG', 'MS', 'SP'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/7yMm7Ct/individuo.jpg', 'autor' => 'Agroicone-ISA-TNC-Baobá', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/CVqTGH8/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/B4RpH7V/tronco.jpg', 'autor' => 'Agroicone-ISA-TNC-Baobá', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/FVt6TbD/fruto2.jpg', 'autor' => 'Agroicone-ISA-TNC-Baobá', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/YdnDMjC/flor.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/4VTYT1B/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
 
 
 	//IPE-VERDE
@@ -245,23 +261,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['mata_atlantica', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['BA', 'CE',  'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PI', 'PR', 'RJ', 'RS', 'SC', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
-  
-
-	//JENIPAPO
-    $planta = Planta::create(
-      [
-        'nome_popular' => 'jenipapo,jenipapeiro',
-        'autoria' => 'L.',
-        'nome_cientifico' => 'Genipa americana',
-        'e_panc' => 0,
-        'ep_floracao_inicio' => 'set',
-        'ep_floracao_fim' => 'dez',
-        'grau_ameaca_iucn' => 'lc',
-        'descricao' => '',
-      ]
-    );
-    $planta->biomas()->attach(Bioma::whereIn('cod', ['amazônia', 'caatinga', 'mata_atlantica', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
-    $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/Bf9DnBh/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/VwkZBH3/tronco.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/4mfMCvw/semente.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/cXXTz6P/plantula.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/W23KXSj/flor.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/KLgk3Jn/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
    
 
 	//LOURO PRETO
@@ -279,6 +284,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['BA', 'GO', 'MG', 'MS', 'MT', 'PA', 'PI'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/bN4HZ9b/individuo.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/XVk2YVh/Fruto.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/hKB5sxv/tronco.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/8P9fKKm/folha.jpg', 'autor' => 'Suzana Salis', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/qppzC1p/flor.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/7z4KLTY/muda.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
    
 
 	//PASSARINHO
@@ -296,6 +307,9 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['mata_atlantica', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'AM', 'BA', 'CE', 'ES', 'MA', 'MG', 'MS', 'MT', 'PB', 'PR', 'RJ', 'RN', 'SP'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/5hzG6N9/individuo.jpg', 'autor' => 'Agroicone-ISA-TNC-Baobá', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/gjzBndg/fruto.jpg', 'autor' => 'Agroicone-ISA-TNC-Baobá', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/yyNBJSb/tronco.jpg', 'autor' => 'Agroicone-ISA-TNC-Baobá', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
     
 	
 	//PATA-DE-VACA
@@ -313,6 +327,7 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'AM', 'DF', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/h9sd3nD/flor.jpg', 'autor' => 'Marcelo Kuhlmann', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
     
 	
 	//SUCUPIRA
@@ -330,7 +345,12 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'SE', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
-    
+    Imagem::create(['url' => 'https://i.ibb.co/1qPpcpc/individuo.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+    Imagem::create(['url' => 'https://i.ibb.co/zmjgH2F/fruto.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+    Imagem::create(['url' => 'https://i.ibb.co/t4C0kF2/semente.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+    Imagem::create(['url' => 'https://i.ibb.co/sWtpB9g/flor.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/R22Vhvc/muda.jpg', 'autor' => 'Bruno Nonato', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	
 	
 	//TARUMÃ
     $planta = Planta::create(
@@ -347,6 +367,10 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['pantanal'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AM', 'BA', 'DF', 'MA', 'MG', 'MS', 'MT', 'PA', 'PI', 'PR', 'RO', 'SP'])->get('id')->pluck('id')->toArray());
+	Imagem::create(['url' => 'https://i.ibb.co/C9SB5Xf/individuo.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/jbn34Vb/fruto.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/Ldddtmk/flor.jpg', 'autor' => 'Iria Ishii', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
+	Imagem::create(['url' => 'https://i.ibb.co/R6TkxqV/muda.jpg', 'autor' => 'Catia Urbanetz', 'fonte' => 'Web Ambiente', 'planta_id' => $planta->id]);
    
    
    //XIMBUVA
@@ -364,5 +388,56 @@ class PlantaTableSeeder extends Seeder
     );
     $planta->biomas()->attach(Bioma::whereIn('cod', ['caatinga', 'mata_atlantica', 'pampa', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
     $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'DF', 'GO', 'MG', 'MS', 'MT', 'PA', 'RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	
+	
+	//BOCAIUVA
+    $planta = Planta::create(
+      [
+        'nome_popular' => 'bocaiuva,macaúba,coco-babão,coco-babosa,coco-macaúba,coqueiro-de-espinho,macajuba,macaibeira,palmeira-macaúva,coquinho',
+        'autoria' => 'Mart. ex Spreng.',
+        'nome_cientifico' => 'Acrocomia aculeata',
+        'e_panc' => 0,
+        'ep_floracao_inicio' => 'out',
+        'ep_floracao_fim' => 'fev',
+        'grau_ameaca_iucn' => 'ne',
+        'descricao' => '',
+      ]
+    );
+    $planta->biomas()->attach(Bioma::whereIn('cod', ['amozonia', 'cerrado',  'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
+    $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AM',' CE', 'DF', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PI', 'PE', 'PR', 'RJ', 'RR', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	
+	
+	//CAQUI DO CERRADO
+    $planta = Planta::create(
+      [
+        'nome_popular' => 'caquizeiro-do-mato,fruta-de-boi,fruta-de-jacu-fêmea,caqui-do-cerrado,bacupari-bravo,olho-de-boi',
+        'autoria' => ' A.DC.',
+        'nome_cientifico' => 'Diospyros hispida',
+        'e_panc' => 0,
+        'ep_floracao_inicio' => 'ago',
+        'ep_floracao_fim' => 'nov',
+        'grau_ameaca_iucn' => 'lc',
+        'descricao' => '',
+      ]
+    );
+    $planta->biomas()->attach(Bioma::whereIn('cod',['cerrado','pantanal'])->get('id')->pluck('id')->toArray());
+    $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AL', 'CE', 'DF', 'ES', 'GO','MA','MG','MS', 'MT', 'PA', 'PB','PI','PR','RJ','RO', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
+	
+	
+	//JENIPAPO
+    $planta = Planta::create(
+      [
+        'nome_popular' => 'jenipapo,jenipapeiro',
+        'autoria' => 'L.',
+        'nome_cientifico' => 'Genipa americana',
+        'e_panc' => 0,
+        'ep_floracao_inicio' => 'set',
+        'ep_floracao_fim' => 'dez',
+        'grau_ameaca_iucn' => 'lc',
+        'descricao' => '',
+      ]
+    );
+    $planta->biomas()->attach(Bioma::whereIn('cod', ['amazônia', 'caatinga', 'mata_atlantica', 'pantanal', 'cerrado'])->get('id')->pluck('id')->toArray());
+    $planta->dist_geografica()->attach(Estado::whereIn('sigla', ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO'])->get('id')->pluck('id')->toArray());
  }
 }
