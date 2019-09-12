@@ -39,6 +39,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => 'api', 'as' => 'api.'], function () {
 	Route::group(['prefix' => 'planta', 'as' => 'planta.'], function () {
 		Route::get('/', ['as' => 'plantas.get', 'uses' => 'PlantaController@apiPlantasGet']);
-		Route::get('/{id}', ['as' => 'planta.get', 'uses' => 'PlantaController@apiPlantaGet'])->where('id', '\d+');		
+		Route::get('/{id}', ['as' => 'planta.get', 'uses' => 'PlantaController@apiPlantaGet'])->where('id', '\d+');
+		Route::get('/pesquisar', ['as' => 'pesquisar.get', 'uses' => 'PlantaController@apiPesquisarGet']);
 	});
 });	

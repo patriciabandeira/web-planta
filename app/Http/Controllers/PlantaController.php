@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Planta;
 use App\Bioma;
 use App\Http\Requests\PlantaRequest;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
 use App\Estado;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +22,7 @@ class PlantaController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->middleware('auth', ['except' => ['apiPlantasGet', 'apiPlantaGet']]);
+        $this->middleware('auth', ['except' => ['apiPlantasGet', 'apiPlantaGet', 'apiPesquisarGet']]);
     }
 	
     /**
@@ -188,5 +184,11 @@ class PlantaController extends Controller
         return response()->json($imagens, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
     }
 
-    
+    public function apiPesquisarGet(){
+        $data = Planta::when(request()->has('nome'), function($query) {
+            $query->where('nome_popular', 'LIKE', '%'.request('nome').'%')->orWhere('nome_cientifico', 'LIKE', '%'.request('nome').'%');
+        })->with(['imagens'])->paginate(10);
+        return response()->json($data, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
+    }
+
 }
