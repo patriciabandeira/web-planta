@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Planta;
+use App\Bioma;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $qtd = [
+            'plantas' => Planta::count(),
+            'biomas' => Bioma::count()
+        ];
+        return view('home', compact('qtd'));
     }
 }
