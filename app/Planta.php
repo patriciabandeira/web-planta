@@ -15,7 +15,11 @@ class Planta extends Model
      */
     protected $table = 'tb_planta';
 	
-	public $timestamps = false;
+    public $timestamps = false;
+    
+    const CREATED_AT = 'dthr_cadastro';
+
+    const UPDATED_AT = 'dthr_alteracao';
 	
 	/**
      * The attributes that are mass assignable.
@@ -23,11 +27,11 @@ class Planta extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'nome_popular', 'nome_cientifico', 'autoria', 'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim', 'biomas', 'grau_ameaca_iucn', 'descricao', 'dist_geografica', 'imagens'
+        'id', 'nome_popular', 'nome_cientifico', 'autoria', 'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim', 'biomas', 'grau_ameaca_iucn', 'descricao', 'dist_geografica', 'imagens', 'imagemPrincipal'
     ];
 
     protected $visible = [
-        'id', 'nome_popular', 'nome_cientifico', 'autoria', 'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim', 'biomas', 'grau_ameaca_iucn', 'descricao', 'dist_geografica', 'imagens'
+        'id', 'nome_popular', 'nome_cientifico', 'autoria', 'e_panc', 'ep_floracao_inicio', 'ep_floracao_fim', 'biomas', 'grau_ameaca_iucn', 'descricao', 'dist_geografica', 'imagens', 'imagemPrincipal'
     ];
 
     private static $iucn_itens = [
@@ -69,17 +73,15 @@ class Planta extends Model
     protected $casts = [
 
     ];
-
-
-    // having this mutator
-    //public function setImagensAttribute($value){
-    //    $this->imagens = $value;
-    //}
     
     public function imagens()
     {
-        //return $this->hasMany(Imagem::class, 'planta_id', 'id');
-        return $this->hasMany(Imagem::class);
+        return $this->hasMany(Imagem::class, 'planta_id', 'id');
+    }
+
+    public function imagemPrincipal()
+    {
+        return $this->hasMany(Imagem::class, 'planta_id', 'id');
     }
 
     public function biomas()

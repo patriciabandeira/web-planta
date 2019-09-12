@@ -12,6 +12,10 @@ class Estado extends Model
      * @var string
      */
     protected $table = 'tb_estado';
+
+    const CREATED_AT = 'dthr_cadastro';
+
+    const UPDATED_AT = 'dthr_alteracao';
 	
     public $timestamps = false;
     

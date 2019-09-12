@@ -13,6 +13,10 @@ class Imagem extends Model
      * @var string
      */
     protected $table = 'tb_imagem';
+
+    const CREATED_AT = 'dthr_cadastro';
+
+    const UPDATED_AT = 'dthr_alteracao';
 	
     public $timestamps = false;
     
@@ -26,12 +30,11 @@ class Imagem extends Model
     ];
 
     protected $visible = [
-        'id', 'url', 'autor', 'fonte', 'planta_id'
+        'id', 'url', 'autor', 'fonte'
     ];
 
     public function planta()
     {
-        //return $this->belongsTo(Planta::class, 'planta_id', 'id');
         return $this->belongsTo(Planta::class);
     }
 
