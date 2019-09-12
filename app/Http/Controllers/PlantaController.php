@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Planta;
 use App\Bioma;
 use App\Http\Requests\PlantaRequest;
+use Illuminate\Http\Request;
 use App\Estado;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -184,10 +185,14 @@ class PlantaController extends Controller
         return response()->json($imagens, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
     }
 
-    public function apiPesquisarGet(){
+    public function apiPesquisarGet(){		
         $data = Planta::when(request()->has('nome'), function($query) {
             $query->where('nome_popular', 'LIKE', '%'.request('nome').'%')->orWhere('nome_cientifico', 'LIKE', '%'.request('nome').'%');
-        })->with(['imagens'])->paginate(10);
+        })->when(request()->has('bioma'), function($query) {
+			$query->whereHas('biomas', function($q){
+				$q->where('tb_bioma.id', '=', request('bioma'));
+			});
+        })->with(['imagens', 'biomas'])->paginate(10);
         return response()->json($data, 200, array('Content-Type' => 'application/json; charset=utf-8'), JSON_UNESCAPED_UNICODE);
     }
 
