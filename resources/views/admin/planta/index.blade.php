@@ -47,8 +47,8 @@
 								@foreach($plantas as $planta)
 								<tr>
 									<td style="vertical-align:middle;" class="align-middle">{{ $planta->id }}</td>
-									<td style="vertical-align:middle;" class="align-middle"><i>{{ str_limit($planta->nome_cientifico, 50) }}</i></td>
-									<td style="vertical-align:middle;" class="align-middle">{{ str_limit($planta->nome_popular, 50) }}</td>
+									<td style="vertical-align:middle;" class="align-middle"><i>{{ str_replace(',', ' ', str_limit($planta->nome_cientifico, 50)) }}</i></td>
+									<td style="vertical-align:middle;" class="align-middle">{{ str_replace(',', ', ', str_limit($planta->nome_popular, 50)) }}</td>
 									<td style="vertical-align:middle;" class="text-center align-middle">
 										<div style="display:block;min-width:50px !important;">
 											<a class="btn btn-info btn-xs" style="" href="{{ route('planta.view.get', $planta->id)}}" role="button" title="Ver"><i class="fa fa-eye"></i></a>
