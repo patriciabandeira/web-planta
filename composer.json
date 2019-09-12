@@ -57,7 +57,11 @@
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
 		"new-install": [
+		    "composer build",
             "composer run post-root-package-install",
 			"composer run post-create-project-cmd"
         ],
@@ -72,9 +76,7 @@
             "php artisan optimize"
         ],
         "database": [
-            "php artisan migrate:reset",
-            "php artisan migrate --force",
-            "php artisan db:seed"
+            "php artisan migrate:fresh --force --seed"
         ],
         "build-database": [
             "composer build",
